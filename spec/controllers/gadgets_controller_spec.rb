@@ -19,10 +19,10 @@ describe GadgetsController, :type => :controller do
       @thinkpad   = user.gadgets.create :name => "Thinkpad"
     end
 
-    it "should find cell_phone and iphone whensearch for 'phone'"
-    it "should find iphone and ipad for 'IP'"
-    it "should find ipad and thinkpad for 'pad'"
-    it "should not find anything when searched for 'neo' "
+    it "should show cell_phone and iphone when searched for 'phone'"
+    it "should show iphone and ipad when searched for 'IP'"
+    it "should show ipad and thinkpad when searched for 'pad'"
+    it "should not show any results when searched for 'neo' "
 
   end
 

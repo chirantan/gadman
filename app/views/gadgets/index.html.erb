@@ -14,7 +14,7 @@
 
     <form class='form-inline' method="GET" action="<%= search_gadgets_path -%>">
       <div class="form-group">
-        <input focus type="text" class="form-control" id="search" placeholder="Search gadgets" name="q">
+        <input type="text" class="form-control" id="search" placeholder="Search gadgets" name="q">
       </div>
     </form>
 
@@ -25,6 +25,8 @@
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_gadget_path(gadget), :class => 'btn btn-mini' %>
+          <%= link_to "Photos",
+                      gadget_photos_path(gadget), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       gadget_path(gadget),
                       :method => :delete,

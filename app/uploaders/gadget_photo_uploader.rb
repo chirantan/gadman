@@ -3,7 +3,7 @@
 class GadgetPhotoUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+  include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
@@ -31,24 +31,40 @@ class GadgetPhotoUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # Create different versions of your uploaded files:
-  version :thumb do
-    process :resize_to_fit => [50, 50]
-  end
-
-  version :small do
-    process :resize_to_fit => [100, 100]
-  end
-
-  version :medium do
-    process :resize_to_fit => [300, 300]
-  end
-
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
   end
+
+  # Create different versions of your uploaded files:
+  version :small do
+    process resize_to_fill: [180, 180], if: :square?
+    process resize_to_fill: [320, 180], if: :not_square?
+  end
+
+  version :medium do
+    process resize_to_fill: [460, 460], if: :square?
+    process resize_to_fill: [640, 460], if: :not_square?
+  end
+
+  version :large do
+    process resize_to_fill: [720, 720], if: :square?
+    process resize_to_fill: [1280, 720], if: :not_square?
+  end
+
+  private
+
+    # Checks if image is a square
+    def square? file
+      img = Magick::Image.read(file.path)
+      img[0].columns == img[0].rows
+    end
+
+    # Oposite to #square?
+    def not_square? file
+      !square? file
+    end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

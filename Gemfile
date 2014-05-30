@@ -25,3 +25,5 @@ gem 'database_cleaner'
 gem 'shoulda-matchers'
 
 gem 'carrierwave'
+
+gem 'rmagick', :require => 'RMagick'

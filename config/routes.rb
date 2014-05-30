@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+
+    resources :photos, only: [:index, :create, :destroy]
   end
 
   devise_for :users, sign_out_via: [ :get, :delete ]

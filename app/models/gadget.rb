@@ -4,6 +4,7 @@ class Gadget < ActiveRecord::Base
   validates :name, presence: true
 
   def self.search(name)
+    return [] if name.blank?
     where("name like '%#{name}%'")
   end
 end

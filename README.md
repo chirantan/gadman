@@ -1,0 +1,4 @@
+gadman
+======
+
+Electronic gadget manager

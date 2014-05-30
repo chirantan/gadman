@@ -11,6 +11,13 @@
     </tr>
   </thead>
   <tbody>
+
+    <form class='form-inline' method="GET" action="<%= search_gadgets_path -%>">
+      <div class="form-group">
+        <input focus type="text" class="form-control" id="search" placeholder="Search gadgets" name="q">
+      </div>
+    </form>
+
     <% @gadgets.each do |gadget| %>
       <tr>
         <td><%= gadget.name %></td>

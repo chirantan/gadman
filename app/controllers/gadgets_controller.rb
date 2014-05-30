@@ -44,6 +44,7 @@ class GadgetsController < ApplicationController
 
   def search
     @gadgets = Gadget.search(params[:q])
+    flash[:notice] = "Found #{@gadgets.count} results for query '#{params[:q]}'"
     render :index
   end
 

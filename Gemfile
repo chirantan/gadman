@@ -20,3 +20,5 @@ end
 
 gem 'devise'
 gem "twitter-bootstrap-rails"
+gem 'factory_girl'
+gem 'database_cleaner'

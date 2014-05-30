@@ -40,5 +40,7 @@ describe Gadget, :type => :model do
       expect(results).to be_empty
     end
 
+    it "should show no results if there search query is blank"
+
   end
 end

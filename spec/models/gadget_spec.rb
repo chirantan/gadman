@@ -23,9 +23,22 @@ describe Gadget, :type => :model do
       expect(results).to include @iphone
     end
 
-    it "should find iphone and ipad for 'IP'"
-    it "should find ipad and thinkpad for 'pad'"
-    it "should not find anything when searched for 'neo' "
+    it "should find iphone and ipad for 'IP'" do
+      results = Gadget.search("IP")
+      expect(results).to include @iphone
+      expect(results).to include @ipad
+    end
+
+    it "should find ipad and thinkpad for 'pad'" do
+      results = Gadget.search("pad")
+      expect(results).to include @ipad
+      expect(results).to include @thinkpad
+    end
+
+    it "should not find anything when searched for 'neo'" do
+      results = Gadget.search("neo")
+      expect(results).to be_empty
+    end
 
   end
 end

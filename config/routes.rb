@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :gadgets, except: [:show]
+  resources :gadgets, except: [:show] do
+    collection do
+      get 'search'
+    end
+  end
 
   devise_for :users, sign_out_via: [ :get, :delete ]
   # The priority is based upon order of creation: first created -> highest priority.

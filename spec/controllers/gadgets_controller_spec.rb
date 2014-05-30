@@ -19,10 +19,32 @@ describe GadgetsController, :type => :controller do
       @thinkpad   = user.gadgets.create :name => "Thinkpad"
     end
 
-    it "should show cell_phone and iphone when searched for 'phone'"
-    it "should show iphone and ipad when searched for 'IP'"
-    it "should show ipad and thinkpad when searched for 'pad'"
-    it "should not show any results when searched for 'neo' "
+    it "should show cell_phone and iphone when searched for 'phone'" do
+      get :search, {:q => "phone"}
+      expect(assigns(:gadgets)).to include @cell_phone
+      expect(assigns(:gadgets)).to include @iphone
+      expect(response).to render_template("index")
+    end
+
+    it "should show iphone and ipad when searched for 'IP'" do
+      get :search, {:q => "ip"}
+      expect(assigns(:gadgets)).to include @ipad
+      expect(assigns(:gadgets)).to include @iphone
+      expect(response).to render_template("index")
+    end
+
+    it "should show ipad and thinkpad when searched for 'pad'" do
+      get :search, {:q => "pad"}
+      expect(assigns(:gadgets)).to include @ipad
+      expect(assigns(:gadgets)).to include @thinkpad
+      expect(response).to render_template("index")
+    end
+
+    it "should not show any results when searched for 'neo' " do
+      get :search, {:q => "neo"}
+      expect(assigns(:gadgets)).to be_empty
+      expect(response).to render_template("index")
+    end
 
   end
 

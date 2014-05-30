@@ -42,6 +42,11 @@ class GadgetsController < ApplicationController
     end
   end
 
+  def search
+    @gadgets = Gadget.search(params[:q])
+    render :index
+  end
+
   private
     def set_gadget
       @gadget = current_user.gadgets.find(params[:id])

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530111446) do
+ActiveRecord::Schema.define(version: 20140530140203) do
 
   create_table "gadgets", force: true do |t|
     t.integer  "user_id",    null: false
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20140530111446) do
   end
 
   add_index "gadgets", ["user_id"], name: "index_gadgets_on_user_id", using: :btree
+
+  create_table "photos", force: true do |t|
+    t.integer  "gadget_id"
+    t.string   "gadget_photo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["gadget_id"], name: "index_photos_on_gadget_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
